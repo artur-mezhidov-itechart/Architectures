@@ -1,0 +1,100 @@
+﻿@model EquipmentManagement.Application.Users.Queries.Models.UserInfo
+
+<div class="kt-portlet">
+    <div class="kt-portlet__body">
+        <div class="kt-widget kt-widget--user-profile-3">
+            <div class="kt-widget__top">
+                <div class="kt-widget__media">
+                    <img src="/assets/media/users/default.jpg" alt="image">
+                </div>
+                <div class="kt-widget__content">
+                    <div class="kt-widget__head">
+                        <a asp-controller="User" asp-action="Profile" asp-route-id="@Model.UserId" class="kt-widget__username">@Model.FirstName @Model.LastName</a>
+                    </div>
+                    <div class="kt-widget__subhead">
+                        <a href="mailto:@Model.Email"><i class="flaticon2-new-email"></i>@Model.Email</a>
+                        <a href="#"><i class="flaticon2-calendar-3"></i>@Model.Post </a>
+                        <a href="#"><i class="flaticon2-placeholder"></i>@Model.Locality, @Model.StateOrProvince, @Model.Country</a>
+                    </div>
+                    <div class="kt-widget__info">
+                        <div class="kt-widget__desc" style="white-space: pre-line;">@Model.About</div>
+                        <div class="kt-widget__progress">
+                            <div class="kt-widget__text">
+                                Progress
+                            </div>
+                            <div class="progress" style="height: 5px;width: 100%;">
+                                <div class="progress-bar kt-bg-success" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="kt-widget__stats">
+                                78%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-widget__bottom">
+                
+                <div class="kt-widget__item">
+                    <div class="kt-widget__icon">
+                        <i class="flaticon-buildings"></i>
+                    </div>
+                    <div class="kt-widget__details">
+                        <span class="kt-widget__title">Furnitures</span>
+                        <span class="kt-widget__value">@Model.FurnituresCount</span>
+                    </div>
+                </div>
+                
+                <div class="kt-widget__item">
+                    <div class="kt-widget__icon">
+                        <i class="flaticon-laptop"></i>
+                    </div>
+                    <div class="kt-widget__details">
+                        <span class="kt-widget__title">Devices</span>
+                        <span class="kt-widget__value">@Model.DevicesCount</span>
+                    </div>
+                </div>
+                
+                <div class="kt-widget__item">
+                    <div class="kt-widget__icon">
+                        <i class="flaticon-tool"></i>
+                    </div>
+                    <div class="kt-widget__details">
+                        <span class="kt-widget__title">Tools</span>
+                        <span class="kt-widget__value">@Model.ToolsCount</span>
+                    </div>
+                </div>
+                
+                <div class="kt-widget__item">
+                    <div class="kt-widget__icon">
+                        <i class="flaticon-computer"></i>
+                    </div>
+                    <div class="kt-widget__details">
+                        <span class="kt-widget__title">Accessories</span>
+                        <span class="kt-widget__value">@Model.AccessoriesCount</span>
+                    </div>
+                </div>
+
+                <div class="kt-widget__item">
+                    <div class="kt-widget__icon">
+                        <i class="flaticon-confetti"></i>
+                    </div>
+                    <div class="kt-widget__details">
+                        <span class="kt-widget__title">Expenses</span>
+                        <span class="kt-widget__value"><span>$</span>@Model.Expenses</span>
+                    </div>
+                </div>
+                
+                <div class="kt-widget__item">
+                    <div class="kt-widget__icon">
+                        <i class="flaticon-file-2"></i>
+                    </div>
+                    <div class="kt-widget__details">
+                        <span class="kt-widget__title"> Pending requests</span>
+                        <span class="kt-widget__value">@Model.PendingRequestsCount</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+﻿@using EquipmentManagement.Domain
+@model EquipmentManagement.Web.ViewModels.Requests.RequestDetailsViewModel
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Request history
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-actions">
+                @if (Model.RequestDetails.IsMine)
+                {
+                    if (Model.RequestDetails.IsPending || Model.RequestDetails.IsInProgress)
+                    {
+                        <a asp-controller="Request" asp-action="Cancel" asp-route-id="@Model.RequestDetails.RequestId" class="btn btn-warning">
+                            <i class="flaticon-cancel"></i> Cancel
+                        </a>
+                    }
+                    else if (Model.RequestDetails.IsApproved)
+                    {
+                        <form class="d-inline" method="post" asp-controller="Request" asp-action="Complete">
+                            <input type="hidden" name="id" value="@Model.RequestDetails.RequestId" />
+                            <button type="submit" class="btn btn-success">
+                                <i class="flaticon-like"></i> Complete
+                            </button>
+                        </form>
+                    }
+                }
+                else
+                {
+                    if (Model.RequestDetails.IsAssignedToMe)
+                    {
+                        if (Model.RequestDetails.IsInProgress)
+                        {
+                            <a asp-controller="Request" asp-action="Approve" asp-route-id="@Model.RequestDetails.RequestId" class="btn btn-success">
+                                <i class="flaticon-interface-5"></i> Approve
+                            </a>
+                            <a asp-controller="Request" asp-action="Decline" asp-route-id="@Model.RequestDetails.RequestId" class="btn btn-danger">
+                                <i class="flaticon-cancel"></i> Decline
+                            </a>
+                        }
+                        if (Model.RequestDetails.IsCompleted && Model.UserEquipmentInfo != null && !Model.UserEquipmentInfo.IsReturned)
+                        {
+                            <form class="d-inline" method="post" asp-controller="Equipment" asp-action="Return">
+                                <input type="hidden" name="requestId" value="@Model.RequestDetails.RequestId" />
+                                <button type="submit" class="btn btn-success">
+                                    <i class="flaticon-refresh"></i> Return the equipment
+                                </button>
+                            </form>
+                        }
+                    }
+                    else
+                    {
+                        if (Model.RequestDetails.IsPending)
+                        {
+                            <form class="d-inline" method="post" asp-controller="Request" asp-action="Assigne">
+                                <input type="hidden" name="id" value="@Model.RequestDetails.RequestId" />
+                                <button type="submit" class="btn btn-success">
+                                    <i class="flaticon-refresh"></i> Assign to me
+                                </button>
+                            </form>
+                        }
+                    }
+                }
+                <back-link />
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__body">
+        <div class="kt-notes">
+            <div class="kt-notes__items">
+                @foreach (var item in Model.RequestDetails.StatusesHistory.Statuses)
+                {
+                    <div class="kt-notes__item">
+                        <div class="kt-notes__media">
+                            <span class="kt-notes__icon">
+                                @switch (item.Status)
+                                {
+                                    case RequestStatus.Pending:<i class="flaticon-time kt-font-warning"></i>
+                                        break;
+                                    case RequestStatus.InProgress: <i class="flaticon-diagram kt-font-info"></i>
+                                        break;
+                                    case RequestStatus.Approved: <i class="flaticon-list-3 kt-font-success"></i>
+                                        break;
+                                    case RequestStatus.Declined: <i class="flaticon-cancel kt-font-danger"></i>
+                                        break;
+                                    case RequestStatus.Completed: <i class="flaticon-interface-5 kt-font-primary"></i>
+                                        break;
+                                    case RequestStatus.Canceled: <i class="flaticon-cancel kt-font-dark"></i>
+                                        break;
+                                }
+                            </span>
+                        </div>
+                        <div class="kt-notes__content">
+                            <div class="kt-notes__section">
+                                <div class="kt-notes__info">
+                                    <span class="kt-notes__title">
+                                        New status #@item.Id
+                                    </span>
+                                    <span class="kt-notes__desc">
+                                        @item.UpdatedAt.ToString("U")
+                                    </span>
+                                </div>
+                            </div>
+                            <span class="kt-notes__body">
+                                @item.Message
+                            </span>
+                            <br />
+                            <request-status status="@item.Status"></request-status> &nbsp; | &nbsp;
+                            Changed by <span class="kt-font-bold">@item.UpdatedUserName</span>  &nbsp; | &nbsp; @item.UpdatedUserEmail
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

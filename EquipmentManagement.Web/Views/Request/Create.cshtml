@@ -1,0 +1,58 @@
+﻿@model EquipmentManagement.Web.ViewModels.Requests.RequestViewModel
+@{
+    ViewData["Title"] = "Create new request";
+}
+
+<div class="kt-portlet kt-portlet--head-lg">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="flaticon-add"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">@ViewData["Title"]</h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <a asp-controller="Request" asp-action="Index" class="btn btn-outline-brand">
+                <i class="la la-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+    <form asp-controller="Request" asp-action="Create" method="post" class="kt-form">
+        <div class="kt-portlet__body">
+            <div class="row">
+                <div class="offset-xl-2 col-xl-8">
+                    <div class="kt-section kt-section--first">
+                        <div class="kt-section__body">
+                            <h3 class="kt-section__title kt-section__title-lg">Request Info:</h3>
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Type</label>
+                                <div class="col-9">
+                                    <select asp-for="EquipmentType" class="form-control">
+                                        <option selected="selected">Accessory</option>
+                                        <option>Device</option>
+                                        <option>Furniture</option>
+                                        <option>Tools</option>
+                                    </select>
+                                    <span class="form-text text-muted">Please select equipment type.</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Message</label>
+                                <div class="col-9">
+                                    <textarea asp-for="Message" class="form-control" type="number" placeholder="Message"></textarea>
+                                    <span class="form-text text-muted">Please enter your message.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions">
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>

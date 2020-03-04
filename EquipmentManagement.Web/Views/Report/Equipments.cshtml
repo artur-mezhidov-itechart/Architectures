@@ -1,0 +1,37 @@
+﻿@model EquipmentManagement.Web.ViewModels.Reports.EquipmentsViewModel
+
+@{
+    ViewData["Title"] = "Equipment reports";
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <div class="row">
+        <div class="col-xl-4">
+            <partial name="_TotalEquipmentChart" model="@Model.Total" />
+        </div>
+        <div class="col-xl-4">
+            <partial name="_UserEquipmentChart" model="@Model.UserFurnitures" />
+            <div class="kt-space-20"></div>
+            <partial name="_UserEquipmentChart" model="@Model.UserDevices" />
+        </div>
+        <div class="col-xl-4">
+            <partial name="_UserEquipmentChart" model="@Model.UserAccessories" />
+            <div class="kt-space-20"></div>
+            <partial name="_UserEquipmentChart" model="@Model.UserTools" />
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <partial name="_RatioDetailChart" model="@Model.RatioOfCount" />
+        </div>
+        <div class="col-xl-6">
+            <partial name="_RatioDetailChart" model="@Model.RatioOfPrice" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/reports-helpers.js"></script>
+    <script src="~/js/reports-equipments.js"></script>
+}

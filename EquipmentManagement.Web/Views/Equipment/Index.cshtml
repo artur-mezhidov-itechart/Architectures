@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Equipments";
+}
+
+<div class="kt-portlet kt-portlet--head-lg">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="flaticon-list-2"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">@ViewData["Title"]</h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <a asp-controller="Equipment" asp-action="Add" class="btn btn-outline-brand">
+                <i class="flaticon2-plus"></i> Add New
+            </a>
+        </div>
+    </div>
+    <div class="kt-portlet__body">
+        <div class="kt-form kt-form--label-right">
+            <div class="form-group row">
+                <label class="offset-xl-9 col-xl-1 col-form-label">Type: </label>
+                <div class="col-lg-2">
+                    <select class="form-control kt-search-input">
+                        <option value="">All</option>
+                        <option value="1">Furniture</option>
+                        <option value="2">Device</option>
+                        <option value="3">Accessory</option>
+                        <option value="4">Tools</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__body kt-portlet__body--fit">
+        <div id="equipments" class="kt-datatable"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/equipments.js"></script>
+}

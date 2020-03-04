@@ -1,0 +1,73 @@
+﻿@model EquipmentManagement.Web.ViewModels.Requests.RequestApproveViewModel
+
+@{
+    ViewData["Title"] = "Request approve";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <partial name="_RequestInfo" model="@Model.Request" />
+    </div>
+    <div class="col-md-8">
+        <div class="kt-portlet">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        @ViewData["Title"]
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                </div>
+            </div>
+            <form asp-controller="Request" asp-action="Approve" method="post" class="kt-form kt-form--label-right">
+                <input type="hidden" asp-for="@Model.RequestId" />
+                <div class="kt-portlet__body">
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">Equipment</label>
+                        <div class="col-lg-6 col-sm-12">
+                            <select asp-for="EquipmentId" asp-items="Model.Equipments" class="form-control"></select>
+                            <span class="form-text text-muted">Please choose an equipment.</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">Expiration Date</label>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="input-group date">
+                                <input asp-for="ExpirationDate" type="text" class="form-control" readonly value="03/01/2020" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="la la-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <span class="form-text text-muted">Please enter expiration date.</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3 col-sm-12">Message</label>
+                        <div class="col-lg-6 col-sm-12">
+                            <textarea asp-for="Message" class="form-control" placeholder="Message" rows="6"></textarea>
+                            <span class="form-text text-muted">Please enter your message.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-portlet__foot">
+                    <div class="kt-form__actions">
+                        <div class="row">
+                            <div class="col-lg-9 ml-lg-auto">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                                <a asp-controller="Request" asp-action="Details" asp-route-id="@Model.RequestId" class="btn btn-default">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#ExpirationDate').datepicker();
+    </script>
+}

@@ -1,0 +1,65 @@
+﻿@model EquipmentManagement.Application.Requets.Queries.Models.RequestDetails
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Request information
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+        </div>
+    </div>
+    <div class="kt-portlet__body">
+        <div class="kt-widget13">
+            <div class="kt-widget13__item">
+                <span class="kt-widget13__desc">
+                    Number:
+                </span>
+                <span class="kt-widget13__text kt-widget13__text--bold">
+                    #@Model.RequestId
+                </span>
+            </div>
+            <div class="kt-widget13__item">
+                <span class="kt-widget13__desc kt-align-right">
+                    Created by:
+                </span>
+                <span class="kt-widget13__text kt-widget13__text--bold">
+                    @Model.CreatedUserName
+                </span>
+            </div>
+            <div class="kt-widget13__item">
+                <span class="kt-widget13__desc">
+                    Emal:
+                </span>
+                <span class="kt-widget13__text">
+                    @Model.CreatedUserEmail
+                </span>
+            </div>
+            <div class="kt-widget13__item">
+                <span class="kt-widget13__desc">
+                    Message:
+                </span>
+                <span class="kt-widget13__text">
+                    @Model.RequestMessage
+                </span>
+            </div>
+            <div class="kt-widget13__item">
+                <span class="kt-widget13__desc">
+                    Equipment Type:
+                </span>
+                <span class="kt-widget13__text kt-widget13__text--bold">
+                    <equipment-type type="@Model.EquipmentType"></equipment-type>
+                </span>
+            </div>
+            <div class="kt-widget13__item">
+                <span class="kt-widget13__desc">
+                    Current Status:
+                </span>
+                <span class="kt-widget13__text">
+                    <request-status status="@Model.StatusesHistory.CurrentStatus"></request-status>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

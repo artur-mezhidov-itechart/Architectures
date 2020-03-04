@@ -1,0 +1,10 @@
+﻿@model EquipmentManagement.Web.ViewModels.Users.UserListViewModel
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+@foreach (var user in Model.Users)
+{
+    <partial name="_UserCard" model="user" />
+}

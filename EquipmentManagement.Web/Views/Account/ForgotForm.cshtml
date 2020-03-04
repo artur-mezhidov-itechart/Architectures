@@ -1,0 +1,10 @@
+﻿@model EquipmentManagement.Web.ViewModels.Accounts.PasswordForgotViewModel
+
+@{
+    ViewData["Title"] = "Password Forgot";
+    ViewData["FormCssClass"] = "kt-login--forgot";
+}
+
+<partial name="_LoginForm" model="null" />
+<partial name="_RegisterForm" model="null" />
+<partial name="_PasswordForgotForm" model="@Model" />

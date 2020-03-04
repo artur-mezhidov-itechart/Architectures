@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "My requests";
+}
+
+<div class="kt-portlet kt-portlet--tabs">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="la la-rocket"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">
+                My requests <small> active and completed requests</small>
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <ul class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-right nav-tabs-line-2x nav-tabs-line-danger" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#kt_portlet_tab_1" role="tab">
+                        <i class="la la-rocket"></i>Active
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#kt_portlet_tab_2" role="tab">
+                        <i class="la la-check-square"></i>Completed
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="kt-portlet__body">
+        <div class="tab-content">
+            <div class="tab-pane active" id="kt_portlet_tab_1">
+                <div class="kt-datatable active-requests-table"></div>
+            </div>
+            <div class="tab-pane " id="kt_portlet_tab_2">
+                <div class="kt-datatable completed-requests-table"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/user-requests.js"></script>
+}

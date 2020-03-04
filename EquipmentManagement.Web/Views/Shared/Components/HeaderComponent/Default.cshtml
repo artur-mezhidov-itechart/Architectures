@@ -1,0 +1,9 @@
+﻿@using EquipmentManagement.Web.Components.Layout
+
+<div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
+    <div class="kt-header-menu-wrapper"></div>
+    <div class="kt-header__topbar">
+        @await Component.InvokeAsync(nameof(HeaderQuickActionComponent))
+        @await Component.InvokeAsync(nameof(HeaderUserComponent))
+    </div>
+</div>

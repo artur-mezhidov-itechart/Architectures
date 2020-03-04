@@ -1,0 +1,10 @@
+﻿@model EquipmentManagement.Web.ViewModels.Accounts.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Registration";
+    ViewData["FormCssClass"] = "kt-login--signup";
+}
+
+<partial name="_LoginForm" model="null" />
+<partial name="_RegisterForm" model="@Model" />
+<partial name="_PasswordForgotForm" model="null" />

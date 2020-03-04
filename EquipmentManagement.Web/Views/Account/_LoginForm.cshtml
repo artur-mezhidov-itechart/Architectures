@@ -1,0 +1,38 @@
+﻿@model EquipmentManagement.Web.ViewModels.Accounts.LoginViewModel
+
+<div class="kt-login__signin">
+    <div class="kt-login__head">
+        <h3 class="kt-login__title">Sign In To Admin</h3>
+    </div>
+    <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="kt-form">
+        @if (!String.IsNullOrEmpty(ViewData["Alert"] as string))
+        {            
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div class="alert-text">@ViewData["Alert"]</div>
+            </div>
+            
+        }
+        <div class="input-group">
+            <input asp-for="Email" type="text" class="form-control is-invalid" placeholder="Email" autocomplete="off">
+            <span asp-validation-for="Email" class="error invalid-feedback"></span>
+        </div>
+        <div class="input-group">
+            <input asp-for="Password" class="form-control is-invalid" placeholder="Password">
+            <span asp-validation-for="Password" class="error invalid-feedback"></span>
+        </div>
+        <div class="row kt-login__extra">
+            <div class="col">
+                <label class="kt-checkbox">
+                    <input type="checkbox" name="remember"> Remember me
+                    <span></span>
+                </label>
+            </div>
+            <div class="col kt-align-right">
+                <a href="javascript:;" id="kt_login_forgot" class="kt-login__link">Forget Password ?</a>
+            </div>
+        </div>
+        <div class="kt-login__actions">
+            <button type="submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign In</button>
+        </div>
+    </form>
+</div>

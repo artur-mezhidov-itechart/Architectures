@@ -1,0 +1,74 @@
+﻿@using EquipmentManagement.Web.HtmlHelpers
+@model EquipmentManagement.Web.ViewModels.Reports.RatioDetailChartViewModel
+
+<div class="kt-portlet kt-portlet--height-fluid">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">@Model.Title</h3>
+        </div>
+        <div class="kt-portlet__head-toolbar"></div>
+    </div>
+    <div class="kt-portlet__body">
+        <div class="kt-widget16">
+            <div class="kt-widget16__items">
+                <div class="kt-widget16__item">
+                    <span class="kt-widget16__sceduled">
+                        Type
+                    </span>
+                    <span class="kt-widget16__amount">
+                        Amount
+                    </span>
+                </div>
+                @foreach (var item in Model.Items)
+                {
+                    <div class="kt-widget16__item">
+                        <span class="kt-widget16__date">
+                            @item.Label
+                        </span>
+                        <span class="kt-widget16__price  kt-font-@item.Type">
+                            @if (!String.IsNullOrEmpty(Model.Symbol))
+                            {
+                                @Model.Symbol
+                            }
+                            @item.Count
+                            @if (Model.Total.HasValue)
+                            {
+                                @(" / ")
+                                if (!String.IsNullOrEmpty(Model.Symbol))
+                                {
+                                    @Model.Symbol
+                                }
+                                @Model.Total
+                            }
+                        </span>
+                    </div>
+                }
+            </div>
+            <div class="kt-widget16__stats">
+                <div class="kt-widget16__visual">
+                    <div id="@Model.ChartId" style="height: 160px; width: 160px;">
+                    </div>
+                </div>
+                <div class="kt-widget16__legends">
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="kt-widget16__legend">
+                            <span class="kt-widget16__bullet kt-bg-@item.Type"></span>
+                            <span class="kt-widget16__stat">@item.Value% @item.Label</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    if (!window.ratioOfEquipmentCountOptions) {
+        window.ratioOfEquipmentCountOptions = {};
+    }
+    window.ratioOfEquipmentCountOptions['@Model.ChartId'] = {
+        id: '@Model.ChartId',
+        items: @Html.ToJson(Model.Items)
+    }
+</script>

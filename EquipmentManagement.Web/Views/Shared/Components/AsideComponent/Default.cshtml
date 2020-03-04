@@ -1,0 +1,140 @@
+﻿@using EquipmentManagement.Security
+
+@inject IUserContext UserContext
+
+<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+    <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+        <div class="kt-aside__brand-logo">
+            <a href="/">
+                <img alt="Logo" src="/assets/media/logos/logo-12.png">
+            </a>
+        </div>
+        <div class="kt-aside__brand-tools">
+            <button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler"><span></span></button>
+        </div>
+    </div>
+    <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+        <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1">
+            <ul class="kt-menu__nav ">
+
+                <li class="kt-menu__item " aria-haspopup="true">
+                    <a href="/" class="kt-menu__link ">
+                        <i class="kt-menu__link-icon flaticon2-architecture-and-city"></i>
+                        <span class="kt-menu__link-text">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="kt-menu__section ">
+                    <h4 class="kt-menu__section-text">Management</h4>
+                </li>
+
+                <li class="kt-menu__item ">
+                    <a asp-controller="User" asp-action="Index" class="kt-menu__link ">
+                        <i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">Users</span>
+                    </a>
+                </li>
+
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                    <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                        <i class="kt-menu__link-icon flaticon2-rocket-1"></i>
+                        <span class="kt-menu__link-text">Requests</span>
+                        <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="kt-menu__submenu ">
+                        <span class="kt-menu__arrow"></span>
+                        <ul class="kt-menu__subnav">
+                            <li class="kt-menu__item " aria-haspopup="true">
+                                <a asp-controller="Request" asp-action="Create" class="kt-menu__link ">
+                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                    <span class="kt-menu__link-text">Create request</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item " aria-haspopup="true">
+                                <a asp-controller="Request" asp-action="My" class="kt-menu__link ">
+                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                    <span class="kt-menu__link-text">My requests</span>
+                                </a>
+                            </li>
+                            @if (UserContext.IsAdmin)
+                            {
+                                <li class="kt-menu__item " aria-haspopup="true">
+                                    <a asp-controller="Request" asp-action="Index" class="kt-menu__link ">
+                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                        <span class="kt-menu__link-text">All requests</span>
+                                    </a>
+                                </li>
+                                <li class="kt-menu__item " aria-haspopup="true">
+                                    <a asp-controller="Request" asp-action="Assigned" class="kt-menu__link ">
+                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                        <span class="kt-menu__link-text">Assigned requests</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                    <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                        <i class="kt-menu__link-icon flaticon2-cube"></i>
+                        <span class="kt-menu__link-text">Equipments</span>
+                        <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="kt-menu__submenu ">
+                        <span class="kt-menu__arrow"></span>
+                        <ul class="kt-menu__subnav">
+                            @if (UserContext.IsAdmin)
+                            {
+                                <li class="kt-menu__item " aria-haspopup="true">
+                                    <a asp-controller="Equipment" asp-action="Add" class="kt-menu__link ">
+                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                        <span class="kt-menu__link-text">Create equipment</span>
+                                    </a>
+                                </li>
+                            }
+                            <li class="kt-menu__item " aria-haspopup="true">
+                                <a asp-controller="Equipment" asp-action="MyEquipments" class="kt-menu__link ">
+                                    <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                    <span class="kt-menu__link-text">My equipments</span>
+                                </a>
+                            </li>
+                            @if (UserContext.IsAdmin)
+                            {
+                                <li class="kt-menu__item " aria-haspopup="true">
+                                    <a asp-controller="Equipment" asp-action="Index" class="kt-menu__link ">
+                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                        <span class="kt-menu__link-text">All equipments</span>
+                                    </a>
+                                </li>
+                                <li class="kt-menu__item " aria-haspopup="true">
+                                    <a asp-controller="Equipment" asp-action="UserEquipments" class="kt-menu__link ">
+                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                                        <span class="kt-menu__link-text">User equipments</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </li>
+
+                @if (UserContext.IsAdmin)
+                {
+                    <li class="kt-menu__section ">
+                        <h4 class="kt-menu__section-text">Reports</h4>
+                    </li>
+                    <li class="kt-menu__item ">
+                        <a asp-controller="Report" asp-action="Requests" class="kt-menu__link ">
+                            <i class="kt-menu__link-icon flaticon2-zig-zag-line-sign"></i><span class="kt-menu__link-text">Requests</span>
+                        </a>
+                    </li>
+                    <li class="kt-menu__item ">
+                        <a asp-controller="Report" asp-action="Equipments" class="kt-menu__link ">
+                            <i class="kt-menu__link-icon flaticon2-pie-chart-4"></i><span class="kt-menu__link-text">Equipments</span>
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>

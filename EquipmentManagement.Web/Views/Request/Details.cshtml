@@ -1,0 +1,18 @@
+﻿@model EquipmentManagement.Web.ViewModels.Requests.RequestDetailsViewModel
+
+@{
+    ViewData["Title"] = "Request details";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <partial name="_RequestInfo" model="@Model.RequestDetails" />
+        @if (Model.UserEquipmentInfo != null)
+        {
+            <partial name="_UserEquipmentInfo" model="@Model.UserEquipmentInfo" />
+        }
+    </div>
+    <div class="col-md-8">
+        <partial name="_RequestHistory" model="@Model" />
+    </div>
+</div>

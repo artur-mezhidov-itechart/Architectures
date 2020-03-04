@@ -1,0 +1,18 @@
+﻿@model EquipmentManagement.Web.ViewModels.Reports.ProgressPercentChartViewModel
+
+<div class="kt-widget24">
+    <div class="kt-widget24__details">
+        <div class="kt-widget24__info">
+            <h4 class="kt-widget24__title">@Model.Title</h4>
+            <span class="kt-widget24__desc">@Model.SubTitle</span>
+        </div>
+        <span class="kt-widget24__stats kt-font-@Model.ColorState"></span>
+    </div>
+    <div class="progress progress--sm">
+        <div class="progress-bar kt-bg-@Model.ColorState" role="progressbar" style="width: @Model.Percent%;" aria-valuenow="@Model.Percent" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="kt-widget24__action">
+        <span class="kt-widget24__change">Change</span>
+        <span class="kt-widget24__number">@Model.Percent%</span>
+    </div>
+</div>
